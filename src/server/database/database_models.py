@@ -5,11 +5,9 @@ import settings
 
 db = SqliteDatabase(database=f'{settings.DATABASE_PATH}/{settings.DATABASE_NAME}')
 
-database = SqliteDatabase('pharmacy.db')
-
 class BaseModel(Model):
     class Meta:
-        database = database
+        database = db
 
 class User(BaseModel):
     position = CharField(default='')
@@ -44,4 +42,4 @@ class Supplier(BaseModel):
     address = CharField(default='')
     phone = CharField(default='')
 
-database.create_tables([User, Customer, Product, Order, OrderItem, Supplier])
+db.create_tables([User, Customer, Product, Order, OrderItem, Supplier])
